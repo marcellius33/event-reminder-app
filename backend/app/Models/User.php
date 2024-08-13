@@ -5,12 +5,10 @@ namespace App\Models;
 use App\Models\Abstract\BaseUuidUser;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
-use Watson\Validating\ValidatingTrait;
 
 class User extends BaseUuidUser
 {
     use Notifiable;
-    use ValidatingTrait;
     use HasApiTokens;
 
     protected $fillable = [
