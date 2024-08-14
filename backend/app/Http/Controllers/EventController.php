@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
+use App\Http\Resources\EventResource;
 use App\Models\Event;
 use App\Services\EventService;
 use Exception;
@@ -27,8 +28,13 @@ class EventController extends Controller
 
     /**
      * Detail
+     * 
+     * @urlParam id string required Example: xxxxxxxx-xxxx-xxxx-xxxxxxxxxxxx
      */
-    public function show() {}
+    public function show(Event $event): EventResource
+    {
+        return new EventResource($event->load('attendees.user'));
+    }
 
     /**
      * Create
