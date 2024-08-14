@@ -24,6 +24,13 @@ class EventService
             $attendees->push($attendee);
         }
 
+        $attendee = new Attendee();
+        $attendee->email = $user->email;
+        $attendee->user()->associate($user);
+        $attendee->event()->associate($event);
+        $attendee->reminder_sent = false;
+        $attendees->push($attendee);
+
         Attendee::insert($attendees->map(function ($attendee) {
             $data = $attendee->getAttributes();
             $data['created_at'] = now();
@@ -33,13 +40,14 @@ class EventService
         })->toArray());
     }
 
-    public function updateEvent(Event $event, array $input): void
+    public function updateEvent(Event $event, array $input, User $user): void
     {
         $event->fill($input);
         $event->save();
 
         $attendees = collect($input['attendees']);
         $existingAttendees = Attendee::where('event_id', $event->id)
+            ->where('user_id', '!=', $user->id)
             ->whereIn('id', $attendees->pluck('id'))
             ->get()
             ->keyBy('id');

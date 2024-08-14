@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Abstract\BaseUuidUser;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
@@ -38,5 +39,15 @@ class User extends BaseUuidUser
             'password'  => 'required|string|min:6',
             'name'      => 'required|string',
         ];
+    }
+
+    public function events(): HasMany
+    {
+        return $this->hasMany(Event::class, 'created_by');
+    }
+
+    public function attendees(): HasMany
+    {
+        return $this->hasMany(Attendee::class);
     }
 }

@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Helpers\RequestHelper;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
+use App\Http\Resources\EventCollection;
 use App\Http\Resources\EventResource;
 use App\Models\Event;
+use App\QueryBuilders\EventQueryBuilder;
 use App\Services\EventService;
 use Exception;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -18,13 +22,23 @@ class EventController extends Controller
 {
 
     public function __construct(
+        private EventQueryBuilder $eventQueryBuilder,
         private EventService $eventService,
     ) {}
 
     /**
      * List
+     * 
+     * @queryParam filter[type] string Example: Upcoming
+     * @queryParam sort string Example: created_at
      */
-    public function index() {}
+    public function index(Request $request): EventCollection
+    {
+        $data = $this->eventQueryBuilder->getQueryBuilder();
+
+        return (new EventCollection($data->paginate(RequestHelper::limit($request))))
+            ->additional($this->eventQueryBuilder->getResource($request));
+    }
 
     /**
      * Detail
@@ -88,7 +102,7 @@ class EventController extends Controller
 
         DB::beginTransaction();
         try {
-            $this->eventService->updateEvent($event, $input);
+            $this->eventService->updateEvent($event, $input, auth()->user());
             DB::commit();
         } catch (Exception $exception) {
             DB::rollBack();
