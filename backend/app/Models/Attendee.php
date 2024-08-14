@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Abstract\BaseUuidModel;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Attendee extends BaseUuidModel
 {
@@ -21,5 +22,10 @@ class Attendee extends BaseUuidModel
             'email' => 'required|email',
             'reminder_sent' => 'required|boolean',
         ];
+    }
+
+    public function event(): BelongsTo
+    {
+        return $this->belongsTo(Event::class);
     }
 }
