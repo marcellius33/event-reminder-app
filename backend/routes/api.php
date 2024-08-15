@@ -19,4 +19,5 @@ Route::middleware('auth:api')->group(function () {
     });
 
     Route::apiResource('events', EventController::class);
+    Route::post('events/import', [EventController::class, 'import'])->name('events.import');
 });

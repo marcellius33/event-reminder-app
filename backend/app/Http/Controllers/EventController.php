@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Helpers\RequestHelper;
+use App\Http\Requests\ImportEventRequest;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
 use App\Http\Resources\EventCollection;
@@ -133,6 +134,29 @@ class EventController extends Controller
 
         return response()->json([
             'message' => __('success.delete_event_success'),
+        ]);
+    }
+
+    /**
+     * Import
+     * 
+     * @bodyParam file file required
+     */
+    public function import(ImportEventRequest $request): JsonResponse
+    {
+        $input = $request->validated();
+
+        DB::beginTransaction();
+        try {
+            $this->eventService->importData($input);
+            DB::commit();
+        } catch (Exception $exception) {
+            DB::rollBack();
+            throw $exception;
+        }
+
+        return response()->json([
+            'message' => __('success.import_data_success'),
         ]);
     }
 }

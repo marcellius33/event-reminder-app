@@ -11,4 +11,6 @@ return [
     'store_event_success' => 'Store event success.',
     'update_event_success' => 'Update event success.',
     'delete_event_success' => 'Delete event success.',
+
+    'import_data_success' => 'Import data success.',
 ];

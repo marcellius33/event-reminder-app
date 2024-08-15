@@ -2,9 +2,11 @@
 
 namespace App\Services;
 
+use App\Imports\EventImport;
 use App\Models\Attendee;
 use App\Models\Event;
 use App\Models\User;
+use Maatwebsite\Excel\Facades\Excel;
 
 class EventService
 {
@@ -85,5 +87,10 @@ class EventService
     {
         Attendee::where('event_id', $event->id)->delete();
         $event->delete();
+    }
+
+    public function importData(array $input): void
+    {
+        Excel::import(new EventImport, $input['file']);
     }
 }
