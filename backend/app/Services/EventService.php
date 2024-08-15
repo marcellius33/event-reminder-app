@@ -20,6 +20,7 @@ class EventService
             $attendee = new Attendee($attendee_data);
             $attendee->user_id = $attendee_data['user_id'] ?? null;
             $attendee->reminder_sent = false;
+            $attendee->reminder_scheduled = false;
             $attendee->event()->associate($event);
             $attendees->push($attendee);
         }
@@ -29,6 +30,7 @@ class EventService
         $attendee->user()->associate($user);
         $attendee->event()->associate($event);
         $attendee->reminder_sent = false;
+        $attendee->reminder_scheduled = false;
         $attendees->push($attendee);
 
         Attendee::insert($attendees->map(function ($attendee) {
@@ -68,6 +70,7 @@ class EventService
                 $newAttendee = new Attendee($attendee);
                 $newAttendee->user_id = $attendee_data['user_id'] ?? null;
                 $newAttendee->reminder_sent = false;
+                $newAttendee->reminder_scheduled = false;
                 $newAttendee->event()->associate($event);
                 $updated_attendees->push($newAttendee);
             }
@@ -75,7 +78,7 @@ class EventService
 
         Attendee::upsert($updated_attendees->map(function ($attendee) {
             return $attendee->getAttributes();
-        })->toArray(), ['id'], ['event_id', 'user_id', 'email', 'reminder_sent']);
+        })->toArray(), ['id'], ['event_id', 'user_id', 'email', 'reminder_sent', 'reminder_scheduled']);
     }
 
     public function deleteEvent(Event $event): void

@@ -12,6 +12,7 @@ class Attendee extends BaseUuidModel
         'user_id',
         'email',
         'reminder_sent',
+        'reminder_scheduled',
     ];
 
     public function getRules(): array
@@ -21,6 +22,7 @@ class Attendee extends BaseUuidModel
             'user_id' => 'nullable|uuid|exists:users,id',
             'email' => 'required|email',
             'reminder_sent' => 'required|boolean',
+            'reminder_scheduled' => 'required|boolean',
         ];
     }
 

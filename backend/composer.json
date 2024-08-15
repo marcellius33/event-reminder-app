@@ -8,6 +8,7 @@
         "php": "^8.2",
         "knuckleswtf/scribe": "^4.37",
         "laravel/framework": "^11.9",
+        "laravel/horizon": "^5.27",
         "laravel/passport": "^12.3",
         "laravel/tinker": "^2.9",
         "spatie/laravel-query-builder": "^5.8",
