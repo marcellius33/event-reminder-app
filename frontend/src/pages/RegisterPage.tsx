@@ -1,13 +1,22 @@
 import "../css/register-page.css";
 import { useNavigate } from "react-router-dom";
 import RegisterForm from "../components/RegisterForm";
+import { getTokenStorage } from "../common/utils/storage";
+import { useEffect } from "react";
 
 function RegisterPage() {
   const navigate = useNavigate();
+  const authenticated = getTokenStorage() !== null;
 
   const handleLoginClick = () => {
     navigate("/");
   };
+
+  useEffect(() => {
+    if (authenticated) {
+      navigate("/event");
+    }
+  });
 
   return (
     <div className="container">
