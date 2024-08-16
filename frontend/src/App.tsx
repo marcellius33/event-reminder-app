@@ -1,9 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+import EventPage from "./pages/EventPage";
 
 function App() {
-  // Check auth here, if there is valid token, redirect to events page if not login page
+  // TODO: Check auth here, if there is valid token, redirect to events page if not login page
   return (
     <>
       <RouterProvider
@@ -15,6 +16,10 @@ function App() {
           {
             path: "/register",
             element: <RegisterPage />,
+          },
+          {
+            path: "/event",
+            element: <EventPage />,
           },
         ])}
       />

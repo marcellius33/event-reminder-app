@@ -68,7 +68,7 @@ body {
 .submit-container {
     display: flex;
     gap: 30px;
-    margin: 30px auto;
+    margin: 0px auto;
 }
 
 .submit {
@@ -95,4 +95,12 @@ body {
 .register-page span {
     color: lightblue;
     cursor: pointer;
+}
+
+.error-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: red;
+    font-size: 10px;
 }
