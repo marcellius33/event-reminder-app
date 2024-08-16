@@ -97,7 +97,7 @@ class AuthController extends AccessTokenController
     /**
      * Login
      * 
-     * @bodyParam username string required Example: jake
+     * @bodyParam email string required Example: jake
      * @bodyParam password string required Example: myevent
      */
     public function login(Request $request_http): array
@@ -106,6 +106,7 @@ class AuthController extends AccessTokenController
 
         $request = RequestHelper::createServerRequest($request_http);
         $body = $request->getParsedBody();
+        $body['username'] = $body['email'];
         $body['client_id'] = config('passport.clients.users.id');
         $body['client_secret'] = config('passport.clients.users.secret');
         $body['grant_type'] = 'password';
