@@ -3,4 +3,4 @@
 use App\Console\Commands\SendEventReminder;
 use Illuminate\Support\Facades\Schedule;
 
-Schedule::command(SendEventReminder::class)->daily();
+Schedule::command(SendEventReminder::class)->hourly();
