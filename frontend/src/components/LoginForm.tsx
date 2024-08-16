@@ -64,7 +64,7 @@ function LoginForm() {
         const data = { ...result.data };
         setTokenStorage(data);
 
-        navigate("/event");
+        navigate("/dashboard");
       } catch (e) {
         // TODO: error handling
         console.log(e);
