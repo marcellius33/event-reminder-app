@@ -4,7 +4,7 @@ import { decamelizeKeys } from "humps";
 import { ClassConstructor } from "class-transformer";
 import QueryTransformer from "./query-transformer";
 
-export const BASE_URL = 'http://localhost:8000/api/' as const;
+export const BASE_URL = 'https://event-reminder-api.varrelmarcellius.xyz/api/' as const;
 
 export const API_LIST = {
     Auth: 'auth',
