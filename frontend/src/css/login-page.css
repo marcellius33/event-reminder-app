@@ -1,0 +1,98 @@
+body {
+    background: linear-gradient(lightblue, grey);
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    width: 600px;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 200px;
+    background: white;
+    padding-bottom: 30px;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.text {
+    color: lightblue;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.underline {
+    width: 40%;
+    height: 10px;
+    background: lightblue;
+    border-radius: 9px;
+}
+
+.inputs {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    gap: 20px;
+}
+
+.input {
+    display: flex;
+    align-items: center;
+    width: 60%;
+    height: 40px;
+    margin: auto;
+    background:lightgrey;
+    border-radius: 10px;
+}
+
+.input > .icon {
+    margin: 0px 30px;
+}
+
+.input input {
+    height: 50px;
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: black;
+    font-size: 20px;
+}
+
+.submit-container {
+    display: flex;
+    gap: 30px;
+    margin: 30px auto;
+}
+
+.submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 40px;
+    color: white;
+    background: lightblue;
+    border-radius: 30px;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.register-page {
+    padding-left: 120px;
+    margin-top: 30px;
+    color: grey;
+    font-size: 15px;
+}
+
+.register-page span {
+    color: lightblue;
+    cursor: pointer;
+}
