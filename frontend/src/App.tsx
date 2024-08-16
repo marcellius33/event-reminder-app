@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import EventPage from "./pages/EventPage";
+import DashboardPage from "./pages/DashboardPage";
 
 function App() {
   return (
@@ -17,8 +17,8 @@ function App() {
             element: <RegisterPage />,
           },
           {
-            path: "/event",
-            element: <EventPage />,
+            path: "/dashboard",
+            element: <DashboardPage />,
           },
         ])}
       />

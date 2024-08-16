@@ -14,7 +14,7 @@ function RegisterPage() {
 
   useEffect(() => {
     if (authenticated) {
-      navigate("/event");
+      navigate("/dashboard");
     }
   });
 

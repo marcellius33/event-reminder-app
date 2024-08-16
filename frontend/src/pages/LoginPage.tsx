@@ -14,7 +14,7 @@ function LoginPage() {
 
   useEffect(() => {
     if (authenticated) {
-      navigate("/event");
+      navigate("/dashboard");
     }
   });
 
