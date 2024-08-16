@@ -6,7 +6,7 @@ import { useEffect } from "react";
 
 function LoginPage() {
   const navigate = useNavigate();
-  const authenticated = getTokenStorage() !== null;
+  const authenticated = getTokenStorage() !== undefined;
 
   const handleRegisterClick = () => {
     navigate("/register");
